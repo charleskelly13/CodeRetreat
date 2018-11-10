@@ -1,16 +1,44 @@
 package CodePack;
 
+import java.io.IOException;
+
 public class GameOfLife {
 	int[][] life;
+	public static void main(String args[])
+	{
+		int [][] grid = 
+			   {{0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0},
+				{0, 1, 1, 1, 0},
+				{0, 0, 0, 0, 0},
+				{0, 0, 0, 0, 0}};
+		GameOfLife game = new GameOfLife(grid);
+
+	}
 	GameOfLife(int [][]grid){
 		life=grid;
+		for(int y=0;y<grid.length; y++)
+			{
+			for(int z=0; z<grid[y].length;z++)
+			{
+				life[y][z]=grid[y][z];
+			}
+			}
+		int[][] x = new int[grid.length][grid[0].length];
 		for(int i=0; i<grid.length;i++)
 		{
 			for(int j=0; j<grid[i].length;j++)
 			{
-				GetNeighbours(i, j);
+				if(IsAlive(i, j))
+				{
+					x[i][j]=1;
+				}
+				System.out.print(x[i][j]+"\t");
 			}
+			System.out.println("\n");
 		}
+		System.out.println("\n");
+		GameOfLife game = new GameOfLife(x);
 	}
 	
 	public int GetNeighbours(int i, int j) {

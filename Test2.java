@@ -46,4 +46,14 @@ class Test2 {
 		assertTrue(game.IsAlive(3, 3));
 	}
 
+	void printing()
+	{
+		int [][] grid = 
+			   {{1, 0, 0, 1},
+				{0, 1, 0, 0},
+				{0, 1, 0, 1},
+				{0, 0, 1, 1}};
+		GameOfLife game = new GameOfLife(grid);
+
+	}
 }
