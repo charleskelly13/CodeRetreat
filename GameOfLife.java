@@ -1,21 +1,50 @@
 package CodePack;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class GameOfLife {
-	int[][] life;
-	public static void main(String args[])
+	static int[][] life;
+	public static void main(String args[]) throws InterruptedException
 	{
 		int [][] grid = 
-			   {{0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0},
-				{0, 1, 1, 1, 0},
-				{0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0}};
-		GameOfLife game = new GameOfLife(grid);
+			   {{1, 1, 0, 0},
+				{1, 1, 0, 0},
+				{0, 0, 1, 1},
+				{0, 0, 1, 1}};
+		while(true)
+
+		{
+			grid=newArray(grid);
+		}
+	}
+	GameOfLife(int [][]grid) throws IOException{
+		life=grid;
+		for(int y=0;y<grid.length; y++)
+			{
+			for(int z=0; z<grid[y].length;z++)
+			{
+				life[y][z]=grid[y][z];
+			}
+			}
+		int[][] x = new int[grid.length][grid[0].length];
+		for(int i=0; i<grid.length;i++)
+		{
+			for(int j=0; j<grid[i].length;j++)
+			{
+				if(IsAlive(i, j))
+				{
+					x[i][j]=1;
+				}
+				System.out.print(x[i][j]+"\t");
+			}
+			System.out.println("\n");
+		}
+		GameOfLife game = new GameOfLife(x);
 
 	}
-	GameOfLife(int [][]grid){
+	public static int[][] newArray(int[][] grid) throws InterruptedException
+	{
 		life=grid;
 		for(int y=0;y<grid.length; y++)
 			{
@@ -38,10 +67,12 @@ public class GameOfLife {
 			System.out.println("\n");
 		}
 		System.out.println("\n");
-		GameOfLife game = new GameOfLife(x);
+		TimeUnit.SECONDS.sleep(5);
+		return x;
+		
 	}
 	
-	public int GetNeighbours(int i, int j) {
+	public static int GetNeighbours(int i, int j) {
 		int count=0;
 		for(int a=i-1; a<=i+1; a++)
 		{
@@ -58,7 +89,7 @@ public class GameOfLife {
 		
 	}
 	
-	public boolean IsAlive(int i, int j)
+	public static boolean IsAlive(int i, int j)
 	{
 		int check = GetNeighbours(i,j);
 		if(check<2||check>3)
